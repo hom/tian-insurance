@@ -1,4 +1,5 @@
 let got = require('got');
+let moment = require('moment');
 let Parse = require('./parse');
 
 (async function() {
@@ -52,7 +53,7 @@ let Parse = require('./parse');
   let forSaveInsurance = list.filter((item) => !insuranceNoSet.has(item.policyNo));
 
   if (forSaveInsurance.length === 0) {
-    console.log("​status: 暂无相关信息更新");
+    console.log(moment().format('YYYY-MM-DD HH:mm:ss') + " 暂无相关信息更新");
     return;
   }
 
@@ -108,5 +109,5 @@ let Parse = require('./parse');
 		console.error("​}catch -> error", error);
   }
 
-	console.log(`status: 已成功添加${status.length}条信息`);
+	console.log(`${moment().format('YYYY-MM-DD HH:mm:ss')} 已成功添加${status.length}条信息`);
 })()
